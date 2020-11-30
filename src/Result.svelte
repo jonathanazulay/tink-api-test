@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { scale } from "svelte/transition";
-  import { bounceOut } from "svelte/easing";
-  export let data: any;
+  import { scale } from 'svelte/transition'
+  import { bounceOut } from 'svelte/easing'
+  export let data: any
   let sorted = Object.entries(data ?? {}).sort((d1, d2) =>
     d1[1] > d2[1] ? 1 : -1
-  );
-  let favoriteMerchant = sorted[0]?.[0] ?? "Unknown!";
+  )
+  let favoriteMerchant = sorted[0]?.[0] ?? "Unknown!"
   let logo = fetch(`/api/logo?search=${favoriteMerchant}%20logo%20square`)
     .then((r) => r.json())
-    .then((r) => r.image);
+    .then((r) => r.image)
 </script>
 
 <style>
