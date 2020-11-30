@@ -1,4 +1,4 @@
-# tink-console-interview-project
+# tink-api-test
 
 To start the project, run:
 
