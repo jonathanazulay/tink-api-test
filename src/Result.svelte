@@ -1,10 +1,14 @@
 <script lang="ts">
   import { scale } from "svelte/transition";
   import { bounceOut } from "svelte/easing";
-  export let data: any
-  let sorted = Object.entries(data ?? {}).sort((d1, d2) => d1[1] > d2[1] ? 1 : -1)
-  let favoriteMerchant = sorted[0]?.[0] ?? 'Unknown!'
-  let logo = fetch(`/api/logo?search=${favoriteMerchant}%20logo%20square`).then(r => r.json()).then((r) => r.image)
+  export let data: any;
+  let sorted = Object.entries(data ?? {}).sort((d1, d2) =>
+    d1[1] > d2[1] ? 1 : -1
+  );
+  let favoriteMerchant = sorted[0]?.[0] ?? "Unknown!";
+  let logo = fetch(`/api/logo?search=${favoriteMerchant}%20logo%20square`)
+    .then((r) => r.json())
+    .then((r) => r.image);
 </script>
 
 <style>
@@ -45,9 +49,11 @@
     <h1>{favoriteMerchant}</h1>
   </header>
   {#await logo}
-    <div></div>
+    <div />
   {:then logo}
-    <div in:scale={{delay: 1000, easing: bounceOut, duration: 1000}} class="logo">
+    <div
+      in:scale={{ delay: 1000, easing: bounceOut, duration: 1000 }}
+      class="logo">
       <img src={logo} alt={`${favoriteMerchant} logo`} />
     </div>
   {/await}
